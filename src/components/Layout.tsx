@@ -1,11 +1,13 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { ShoppingCart, Store, Settings } from 'lucide-react';
+import { ShoppingCart, Store, Settings, LogOut } from 'lucide-react';
 import { useCart } from '../CartContext';
 import { useSettings } from '../SettingsContext';
+import { useAuth } from '../AuthContext';
 
 export function Layout() {
   const { cartCount } = useCart();
   const { storeName, storeLogo } = useSettings();
+  const { isAuthenticated, logout } = useAuth();
   const location = useLocation();
 
   return (
@@ -31,30 +33,39 @@ export function Layout() {
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                 }`}
               >
-                Web
+                Início
               </Link>
-              <Link
-                to="/admin"
-                className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  location.pathname === '/admin'
-                    ? 'bg-primary-light text-primary-text'
-                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                }`}
-              >
-                <Settings className="w-4 h-4" />
-                Admin
-              </Link>
+              {isAuthenticated && (
+                <Link
+                  to="/admin"
+                  className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === '/admin'
+                      ? 'bg-primary-light text-primary-text'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  }`}
+                >
+                  <Settings className="w-4 h-4" />
+                  Admin
+                </Link>
+              )}
             </nav>
           </div>
           
-          <Link to="/cart" className="relative p-2 text-gray-600 hover:text-primary transition-colors">
-            <ShoppingCart className="w-6 h-6" />
-            {cartCount > 0 && (
-              <span className="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-primary rounded-full border-2 border-white">
-                {cartCount}
-              </span>
+          <div className="flex items-center gap-4">
+            <Link to="/cart" className="relative p-2 text-gray-600 hover:text-primary transition-colors">
+              <ShoppingCart className="w-6 h-6" />
+              {cartCount > 0 && (
+                <span className="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-primary rounded-full border-2 border-white">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
+            {isAuthenticated && (
+              <button onClick={logout} className="p-2 text-gray-400 hover:text-red-500 transition-colors" title="Sair">
+                <LogOut className="w-5 h-5" />
+              </button>
             )}
-          </Link>
+          </div>
         </div>
       </header>
 
@@ -64,7 +75,11 @@ export function Layout() {
       
       <footer className="bg-white border-t border-gray-200 py-8 text-center text-gray-500 text-sm">
         <p>&copy; 2026 {storeName}. Todos os direitos reservados.</p>
-        <p className="mt-1">Protótipo de e-commerce.</p>
+        {!isAuthenticated && (
+           <Link to="/login" className="inline-block mt-4 text-xs text-gray-300 hover:text-gray-400">
+             Acesso Lojista
+           </Link>
+        )}
       </footer>
     </div>
   );
