@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
+  --color-primary-text: var(--primary-text);
+  --color-primary-ring: var(--primary-ring);
+}
+
+:root, .theme-default {
+  --primary: var(--color-indigo-600);
+  --primary-hover: var(--color-indigo-700);
+  --primary-light: var(--color-indigo-50);
+  --primary-text: var(--color-indigo-700);
+  --primary-ring: var(--color-indigo-500);
+}
+
+.theme-rose {
+  --primary: var(--color-rose-600);
+  --primary-hover: var(--color-rose-700);
+  --primary-light: var(--color-rose-50);
+  --primary-text: var(--color-rose-700);
+  --primary-ring: var(--color-rose-500);
+}
+
+.theme-emerald {
+  --primary: var(--color-emerald-600);
+  --primary-hover: var(--color-emerald-700);
+  --primary-light: var(--color-emerald-50);
+  --primary-text: var(--color-emerald-700);
+  --primary-ring: var(--color-emerald-500);
+}
+
+.theme-amber {
+  --primary: var(--color-amber-600);
+  --primary-hover: var(--color-amber-700);
+  --primary-light: var(--color-amber-50);
+  --primary-text: var(--color-amber-700);
+  --primary-ring: var(--color-amber-500);
+}
+
+.theme-violet {
+  --primary: var(--color-violet-600);
+  --primary-hover: var(--color-violet-700);
+  --primary-light: var(--color-violet-50);
+  --primary-text: var(--color-violet-700);
+  --primary-ring: var(--color-violet-500);
+}
+
+.theme-slate {
+  --primary: var(--color-slate-800);
+  --primary-hover: var(--color-slate-900);
+  --primary-light: var(--color-slate-100);
+  --primary-text: var(--color-slate-900);
+  --primary-ring: var(--color-slate-500);
+}
