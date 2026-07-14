@@ -4,8 +4,8 @@ export interface Product {
   description: string;
   price: number;
   image: string;
+  type: 'physical' | 'digital';
   affiliateLink?: string;
-  type?: 'physical' | 'digital';
 }
 
 export interface CartItem extends Product {

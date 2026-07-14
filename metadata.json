@@ -1,5 +1,5 @@
 {
-  "name": "Loja Virtual",
+  "name": "InstaStore",
   "description": "App web de loja virtual com carrinho de compras e integração com Stripe.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
